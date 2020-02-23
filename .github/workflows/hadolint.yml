@@ -1,0 +1,12 @@
+name: hadolint Workflow
+on: [push]
+
+jobs:
+  hadolint:
+    name: Test hadolint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+      - name: Install hadolint
+        run: docker run --rm -i hadolint/hadolint < Dockerfile
