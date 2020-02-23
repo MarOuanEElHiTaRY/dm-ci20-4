@@ -1,0 +1,17 @@
+name: php-cs Workflow
+on: [push]
+
+jobs:
+  php-cs:
+    name: Test php code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v2
+      - name: Install php-cs
+        run: |
+          curl -L https://cs.symfony.com/download/php-cs-fixer-v2.phar -o php-cs-fixer
+          sudo chmod a+x php-cs-fixer
+          sudo mv php-cs-fixer /usr/local/bin/php-cs-fixer
+          php-cs-fixer
+          php php-cs-fixer.phar fix /src --dry-run
